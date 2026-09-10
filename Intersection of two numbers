@@ -1,0 +1,47 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        // Your code here
+        Scanner sc=new Scanner(System.in);
+
+        int n=sc.nextInt();
+        int[] num1 =new int[n];
+        for(int i=0;i<n;i++){
+            num1[i]=sc.nextInt();
+
+        }
+        int m=sc.nextInt();
+
+        int[] num2=new int[m];
+        for(int i=0;i<m;i++){
+            num2[i]=sc.nextInt();
+        }
+       // dup(num1,num2);
+       
+    //}
+
+ //   public static int dup(int[] num1 ,int[] num2){
+        Set<Integer> set1 =new HashSet<>();
+        Set<Integer> set2=new HashSet<>(); 
+
+        for(int k : num1){
+            set1.add(k);
+        }
+
+        for(int t : num2){
+            if(set1.contains(t)){
+                set2.add(t);
+            }
+        }
+ArrayList<Integer> list=new ArrayList<>();
+for(int p  : set2){
+    list.add(p);
+} 
+
+    System.out.print(list);
+
+        
+    }
+}
+
+//}
