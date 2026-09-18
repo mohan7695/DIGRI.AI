@@ -1,0 +1,47 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        // Your code here
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int k=sc.nextInt();
+
+        List<Integer> result=new ArrayList<>();
+        Deque<Integer> max=new LinkedList<>();
+        Deque<Integer> min=new LinkedList<>();
+
+        for(int i=0;i<n;i++){
+            if(!max.isEmpty() && max.peekFirst()== i-k){
+                max.pollFirst();
+            }
+            if(!min.isEmpty() && min.peekFirst() == i-k){
+                min.pollFirst();
+            }
+            while(!max.isEmpty() && arr[max.peekLast()] <= arr[i]){
+                max.pollLast();
+            }
+            while(!min.isEmpty() && arr[min.peekLast()] >= arr[i]){
+                min.pollLast();
+            }
+            max.offerLast(i);
+            min.offerLast(i);
+
+            if(i>=k-1){
+                int maxval=arr[max.peekFirst()];
+                int minval=arr[min.peekFirst()];
+                result.add(maxval-minval);
+            }
+        }
+        int[] nums=new int[result.size()];
+        int count=0;
+        for(int np : result){
+            nums[count++]=np;
+        }
+        System.out.println(Arrays.toString(nums));
+        sc.close();
+    }
+}
