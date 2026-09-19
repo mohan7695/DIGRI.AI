@@ -1,0 +1,23 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        // Your code here
+        Scanner sc=new Scanner(System.in);
+PriorityQueue<Integer> queue =new PriorityQueue<>();
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+              arr[i]=sc.nextInt();
+        }
+int k=sc.nextInt();
+        for(int q : arr){
+            queue.add(q);
+        
+     if(queue.size() > k){
+        queue.poll();
+     }
+        }
+     System.out.println(queue.peek());
+        sc.close();
+    }
+}
