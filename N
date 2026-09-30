@@ -1,0 +1,66 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+
+public class Main {
+   public static void reOrder(Node head){
+if(head == null || head .next == null){
+    return;
+}
+ Node slow=head;
+ Node fast=head;
+ while( fast != null && fast.next != null ){
+    slow=slow.next;
+    fast=fast.next.next;
+ }
+ Node prev=null;
+ Node curr=slow.next;
+ slow.next=null;
+
+ while(curr != null){
+    Node nextNode= curr.next;
+    curr.next=prev;
+    prev=curr;
+    curr=nextNode;
+ }
+Node fh=head;
+Node sh=prev;
+while(sh != null){
+    Node tmp1=fh.next;
+    Node tmp2=sh.next;
+
+    fh.next=sh;
+    sh.next=tmp1;
+
+    fh=tmp1;
+    sh=tmp2;
+}
+   }
+    // Node temp=head;
+    // boolean t=true;
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+int n=sc.nextInt();
+Node head =new Node(sc.nextInt());
+Node tail=head;
+if(n<=0) return;
+for(int i=1;i<n;i++){
+tail.next=new Node(sc.nextInt());
+tail=tail.next;
+}
+reOrder(head);
+
+Node temp=head;
+
+while(temp != null ){
+    System.out.print(temp.data + (temp.next != null ? " " : ""));
+    temp=temp.next;
+}
+    }
+}
