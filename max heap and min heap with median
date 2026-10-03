@@ -1,0 +1,34 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        // Your code here
+        Scanner sc=new Scanner(System.in);
+        if(!sc.hasNextInt()) return;
+        int n=sc.nextInt();
+
+        StringBuilder sb=new StringBuilder();
+PriorityQueue<Integer> max=new PriorityQueue<>(Collections.reverseOrder());
+PriorityQueue<Integer> min=new PriorityQueue<>();
+        for(int i=0;i<n;i++){
+            int d=sc.nextInt();
+
+            max.add(d);
+
+            min.add(max.poll());
+
+            if(max.size() < min.size()){
+                max.add(min.poll());
+            }
+            int median;
+
+            if(max.size()  > min.size()){
+                median=max.peek();
+            }else{
+                median = (max.peek() + min.peek())/2;
+            }
+
+sb.append(median).append(" ");
+        }
+        System.out.print(sb.toString().trim());
+    }
+}
