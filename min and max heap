@@ -1,0 +1,28 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+       
+       Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();
+PriorityQueue<Integer> max=new PriorityQueue<>(Collections.reverseOrder());
+PriorityQueue<Integer> min=new PriorityQueue<>();
+       for(int i=0;i<n;i++){
+
+        int d=sc.nextInt();
+
+        if(max.isEmpty() || d <= max.peek()){
+            max.add(d);
+        }else{
+            min.add(d);
+        }
+if(max.size() > min.size() + 1){
+    min.add(max.poll());
+}
+else if(max.size() < min.size()){
+    max.add(min.poll());
+}
+       }
+       System.out.println(max.peek()+" "+min.peek());
+       
+    }
+}
