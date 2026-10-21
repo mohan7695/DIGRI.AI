@@ -1,0 +1,43 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc =new Scanner(System.in);
+List<Integer> list  = new ArrayList<>();
+        while(sc.hasNextInt()){
+                list.add(sc.nextInt());
+        }
+if(!list.isEmpty()){
+    list.remove(0);
+}
+        if(list.isEmpty()){
+            return;
+        }
+        int[] arr =new int[list.size()];
+        for(int i=0;i<list.size();i++){
+            arr[i] = list.get(i);
+        }
+        System.out.println(maxProduct(arr));
+    }
+    public static int maxProduct(int[] arr){
+        if( arr == null || arr.length == 0) return 0;
+
+        int maxR = arr[0];
+        int maxS = arr[0];
+        int minS = arr[0];
+
+        for(int i =1; i < arr.length;i++){
+            int curr = arr[i];
+
+            if(curr < 0){
+                int temp = maxS;
+                maxS = minS;
+                minS = temp;
+            }
+            maxS = Math.max(curr,maxS*curr);
+            minS = Math.min(curr,minS*curr);
+
+            maxR  = Math.max(maxR,maxS);
+        }
+        return maxR;
+    }
+}
